@@ -1,21 +1,27 @@
 from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 import time
 
+
+#Legg inn mail adresse og passord
 password = 'DittPassord'
 mail = 'DinMail'
 
 driver = webdriver.Firefox()
 #Åpner nettsiden og klikker på logg inn
 driver.get('https://mail.uit.no/owa/auth/logon.aspx?replaceCurrent=1&url=https%3a%2f%2fmail.uit.no%2fowa')
-time.sleep(5)
 
+#Finner textboksene til brukernavn og passord og legger inn sagt verdier
+driver.find_element_by_id("username").send_keys(mail)
+driver.find_element_by_id('password').send_keys(password)
+time.sleep(2)
+
+#Trykker på knappen for å logge inn
 driver.find_element_by_class_name('signinbutton').click()
-time.sleep(5)
+time.sleep(3)
 
 #Åpner calendar viduet i outlook
 driver.find_element_by_class_name('_hl_o ms-font-weight-regular ms-font-color-white o365button ms-font-m').click()
-driver.findElement(By.id("username").setAttribute(mail))
-driver.findElement(By.id('password').setAttribute(password))
 #Åpner new event viduet i outlook
 driver.find_element_by_class_name('_ce_V ms-font-weight-regular').click()
 
