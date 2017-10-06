@@ -1,0 +1,20 @@
+import tkinter as tk
+import urllib as url
+from selenium import webdriver
+import time
+
+driver = webdriver.Firefox()
+#Åpner nettsiden og klikker på logg inn
+driver.get('https://mail.uit.no/owa/auth/logon.aspx?replaceCurrent=1&url=https%3a%2f%2fmail.uit.no%2fowa')
+time.sleep(5)
+
+driver.find_element_by_class_name('signinbutton').click()
+time.sleep(5)
+
+#Åpner calendar viduet i outlook
+driver.find_element_by_class_name('_hl_o ms-font-weight-regular ms-font-color-white o365button ms-font-m').click()
+
+#Åpner new event viduet i outlook
+driver.find_element_by_class_name('_ce_V ms-font-weight-regular').click()
+
+
